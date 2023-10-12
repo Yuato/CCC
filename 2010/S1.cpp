@@ -21,8 +21,8 @@ int main(){
     }
     if ((value_holder[0]==value_holder[1]) && (names.size()>1)){
         for (int i = 0; i<value_holder.size(); i++)
-        if (value_holder[i]==value_holder[0]){
-            names2.push_back(names[i]);
+            if (value_holder[i]==value_holder[0]){
+                names2.push_back(names[i]);
         }
         sort(names2.begin(), names2.end());
         std::cout<<names2[0]<<'\n'<<names2[1];
