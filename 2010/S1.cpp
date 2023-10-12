@@ -1,30 +1,36 @@
 #include <bits/stdc++.h>
-
 int main(){
-    int num,R,S,D,value,value_holder=0,max=0,count = 0;
+    int num,value,R,S,D;
     std::string computer;
+    std::vector<int>value_holder = {-1,-1};
+    std::vector<std::string>names = {};
+    std::vector<std::string>names2 = {};
     std::cin>>num;
-    int values [num];
-    std::string computer_name [num];
-    
-    for (int i = 0; i<num; i++){
+    while(num>0){
         std::cin>>computer>>R>>S>>D;
         value = 2*R + 3*S + D;
-        computer_name[i] = computer;
-        values[i] = value;
-        if (value>=value_holder){
-            max = value;
+        if (value>value_holder[0]){
+            value_holder.insert(value_holder.begin(),value);
+            names.insert(names.begin(), computer);
         }
-        value_holder = value;
+        else if (value>value_holder[1]){
+            value_holder.insert(value_holder.begin()+1,value);
+            names.insert(names.begin()+1, computer);
+        }
+        num--;
     }
-    for (int n = 0; n<num; n++){
-        if ((values[n] ==max) && (count == 0)){
-            std::cout<<computer_name[n];
-            count++;
+    if ((value_holder[0]==value_holder[1]) && (names.size()>1)){
+        for (int i = 0; i<value_holder.size(); i++)
+        if (value_holder[i]==value_holder[0]){
+            names2.push_back(names[i]);
         }
-        else if (values[n]==max) 
-        {
-            std::cout<<std::endl<<computer_name[n];
-        }
+        sort(names2.begin(), names2.end());
+        std::cout<<names2[0]<<'\n'<<names2[1];
+    }
+    else if(names.size()>1){
+        std::cout<<names[0]<<'\n'<<names[1];
+    }
+    else if(names.size()==1){
+        std::cout<<names[0];
     }
 }
