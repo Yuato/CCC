@@ -1,6 +1,6 @@
 #include <iostream>
 int main(){
-    int num, position;
+    int num, position=0;
     std::string number, keep;
     std::cin>>num;
     for (int i = 0; i <num; i++){
