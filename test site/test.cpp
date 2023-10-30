@@ -1,10 +1,8 @@
-# include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
+using namespace std;
 int main(){
-    std::string s;
-    std::getline(std::cin, s);
-    std::vector<char> v(s.begin(), s.end());
-    for (int i =0; i<v.size(); i++){
-        std::cout<<v[i];
-    }
+    vector<vector<int>>grid = vector<vector<int>>(10, vector<int>(20)), visited = vector<vector<int>>(10, vector<int>(20));
+    cout<<grid[0][0]<<visited[0][0];
 }
