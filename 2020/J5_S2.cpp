@@ -1,53 +1,54 @@
+//work in progress
 #include <bits/stdc++.h>
+#define pii pair<int,int>
 
+using namespace std;
+// 3
+// 4
+// 3 10 8 14
+// 1 11 12 12
+// 6 2 3 9
 
 int main(){
-    int X,Y,num, divisor;
-    std::cin>>X>>Y;
-    bool yes = false;
-    std::vector<int>Tocheck_Y;
-    std::vector<int>Tocheck_X;
-    std::vector<int> checked;
-    Tocheck_X.push_back(0);
-    Tocheck_Y.push_back(0);
-    int grid [Y][X];
-    for (int y = 0; y<Y; y++){
-        for (int x = 0; x<X; x++){
-            std::cin>>num;
-            grid[y][x]=num;
+    bool poss = false;
+    int N, M;
+    cin>>N>>M;
+    int arr [N][M];
+    vector<vector<pii>>adj(1000010);
+    for (int i = 0; i<N; i++){
+        for (int j = 0; j<M; j++){
+            int a;
+            cin>>a;
+            arr[i][j] = a;
+            adj[(i+1)*(j+1)].push_back(pair(i,j));
         }
     }
-    while (Tocheck_X.size()!=0){
-        std::vector<int>::iterator it;
-        it = std::find(checked.begin(), checked.end(), grid[Tocheck_Y[0]][Tocheck_X[0]]);
-
-        if (grid[Tocheck_Y[0]][Tocheck_X[0]]>0){
-            for (int i = Y;i>0; i--){
-                if((grid[Tocheck_Y[0]][Tocheck_X[0]]%i==0)&&(grid[Tocheck_Y[0]][Tocheck_X[0]]/i<=X)){
-                    Tocheck_Y.push_back(i-1);
-                    int x = (grid[Tocheck_Y[0]][Tocheck_X[0]]/i);
-                    Tocheck_X.push_back(x-1);
-                    if ((i==Y)&&(x==X)){
-                        yes = true;
-                        break;
-                    }
-                }
-            }
-            
-            grid[Tocheck_Y[0]][Tocheck_X[0]] = 0;
-            Tocheck_X.erase(Tocheck_X.begin());
-            Tocheck_Y.erase(Tocheck_Y.begin());
-
-            if (yes==true){
-                std::cout<<"yes";
+    std::vector<int>::iterator it;
+        
+    vector<int>next;
+    int count = 0;
+    int size = 1;
+    next.push_back(arr[0][0]);
+    while (count < size){
+        for (int i = 0; i<adj[next[count]].size(); i++){
+            if (adj[next[count]][i].first==N-1&&adj[next[count]][i].second==M-1){
+                poss=true;
                 break;
             }
+            next.push_back(arr[adj[next[count]][i].first][adj[next[count]][i].second]);
+            size++;
         }
-
-        else{
-            Tocheck_X.erase(Tocheck_X.begin());
-            Tocheck_Y.erase(Tocheck_Y.begin());
+        adj[next[count]].clear();
+        count++;
+        if (poss){
+            break;
         }
+        
     }
-    if (yes == false)std::cout<<"no";
+    if (poss){
+        cout<<"yes";
+    }
+    else{
+        cout<<"no";
+    }
 }
