@@ -1,8 +1,13 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
+
+int sqrt(int i){
+    return i*i;
+}
+
 int main(){
-    vector<vector<int>>grid = vector<vector<int>>(10, vector<int>(20)), visited = vector<vector<int>>(10, vector<int>(20));
-    cout<<grid[0][0]<<visited[0][0];
+    int arr[0];
+    cout<<1;
+    cout<<sqrt(2);
 }
