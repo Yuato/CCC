@@ -6,14 +6,16 @@
 using namespace std;
 
 bool visited[10010];
-vector<vector<int>>pages;
-static int min = 10000;
+int arr [10010];
 
-void bfs(vector<int>next, int step){
+void bfs(vector<vector<int>>pages,vector<int>next, int step){
     vector<int>hold;
     for (int i = 0; i<next.size(); i++){
-        if (step<min&&pages[next[i]].size()==0){
-            min = step;
+        if (pages[next[i]].size()==0){
+            arr[next[i]] = step;
+        }
+        else{
+            arr[next[i]] = 10000;
         }
         if (visited[next[i]]==false){
             visited[next[i]] = true;
@@ -23,11 +25,12 @@ void bfs(vector<int>next, int step){
         }
     }
     if (hold.size()!=0){
-        bfs(hold, step+1);
+        bfs(pages, hold, step+1);
     }
 }
 
 int main() {
+    vector<vector<int>>pages;
     vector<int>link;
     pages.push_back(link);
     for (int i = 0; i<10010; i++){
@@ -46,5 +49,23 @@ int main() {
     }
     vector<int>next;
     next.push_back(1);
-    bfs(next, 1);
+    bfs(pages, next, 1);
+
+    int min = 10000;
+    bool poss = true;
+    for (int i = 1; i<n+1; i++){
+        if (arr[i]<min){
+            min = arr[i];
+        }
+        if (visited[i]==false){
+            poss = false;
+        }
+    }
+    if (poss){
+        cout<<'Y';
+    }
+    else{
+        cout<<'N';
+    }
+    cout<<'\n'<<min;
 }
