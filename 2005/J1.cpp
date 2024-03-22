@@ -1,3 +1,4 @@
+//Solved (checked with DMOJ)
 #include <iostream>
 
 // 100 free minutes then 25 cents per minute	15 cents per minute	20 cents per minute

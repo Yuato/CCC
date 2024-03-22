@@ -1,3 +1,4 @@
+//Solved (checked with DMOJ)
 #include <iostream>
 #include <array>
 #include <iterator>
