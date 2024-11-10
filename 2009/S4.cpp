@@ -1,16 +1,19 @@
-//work in progress
+//solved (checked with DMOJ)
+//Dijkstra algorithm with the inital nodes being nodes that sell pencils (filter through a priority queue)
 #include <bits/stdc++.h>
 #define pii pair<int,int>
 
 using namespace std;
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     int N, T, P;
     cin>>N>>T;
     vector<pii> arr[N+1];
     bool visited[N+1];
     int costed[N+1];
-    for (int i = 0; i<N+1; i++){
+    for (int i = 1; i<N+1; i++){
         visited[i] = false;
         costed[i] = 0;
     }
